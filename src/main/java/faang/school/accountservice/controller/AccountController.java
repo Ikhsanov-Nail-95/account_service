@@ -1,7 +1,7 @@
 package faang.school.accountservice.controller;
 
 import faang.school.accountservice.dto.AccountDto;
-import faang.school.accountservice.enums.Status;
+import faang.school.accountservice.enums.AccountStatus;
 import faang.school.accountservice.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -52,8 +52,8 @@ public class AccountController {
             @ApiResponse(responseCode = "500", description = "Error occurred when updated the payment account")
     })
     @PutMapping("/{id}")
-    public AccountDto updateStatusAccount(@PathVariable long id, Status status) {
-        return accountService.updateStatusAccount(id, status);
+    public AccountDto updateStatusAccount(@PathVariable long id, AccountStatus accountStatus) {
+        return accountService.updateStatusAccount(id, accountStatus);
     }
 
     @Operation(summary = "Close a payment account by ID")
@@ -66,27 +66,5 @@ public class AccountController {
     public AccountDto closeAccount(@PathVariable long id) {
         return accountService.closeAccount(id);
     }
-
-//    @Operation(summary = "Block a payment account by ID")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Payment account blocked"),
-//            @ApiResponse(responseCode = "404", description = "Payment account not found"),
-//            @ApiResponse(responseCode = "500", description = "Error occurred when blocked the payment account")
-//    })
-//    @PutMapping("/block/{id}")
-//    public AccountDto blockAccount(@PathVariable long id) {
-//        return accountService.blockAccount(id);
-//    }
-//
-//    @Operation(summary = "Unlock a payment account by ID")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Payment account unlocked"),
-//            @ApiResponse(responseCode = "404", description = "Payment account not found"),
-//            @ApiResponse(responseCode = "500", description = "Error occurred when unlocked the payment account")
-//    })
-//    @PutMapping("/unlock/{id}")
-//    public AccountDto unlockAccount(@PathVariable long id) {
-//        return accountService.unlockAccount(id);
-//    }
 
 }

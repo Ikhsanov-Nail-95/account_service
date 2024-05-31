@@ -1,8 +1,9 @@
 package faang.school.accountservice.model;
 
+import faang.school.accountservice.enums.AccountStatus;
 import faang.school.accountservice.enums.AccountType;
 import faang.school.accountservice.enums.Currency;
-import faang.school.accountservice.enums.Status;
+import faang.school.accountservice.enums.OwnerType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,8 +11,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -35,12 +34,15 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "owner_id", nullable = false)
+    private Long ownerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "owner_type", nullable = false)
+    private OwnerType ownerType;
+
     @Column(name = "number", length = 20, nullable = false, unique = true)
     private String accountNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    private Owner owner;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
@@ -52,7 +54,7 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private AccountStatus status;
 
     @Column(name = "status_details", length = 128)
     private String statusDetails;
