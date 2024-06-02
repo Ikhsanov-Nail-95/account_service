@@ -24,13 +24,13 @@ CREATE TABLE account
 
 CREATE TABLE balance_audit
 (
-    id              BIGSERIAL PRIMARY KEY UNIQUE,
-    account_id      BIGSERIAL NOT NULL,
-    balance_version BIGINT    NOT NULL,
-    auth_balance    BIGINT,
-    actual_balance  BIGINT,
-    operation_id    BIGINT,
-    created_at      timestamptz default current_timestamp,
+    id                      BIGSERIAL PRIMARY KEY UNIQUE,
+    account_id              BIGSERIAL    NOT NULL,
+    balance_audit_version   BIGINT NOT NULL,
+    auth_balance            BIGINT,
+    actual_balance          BIGINT,
+    operation_id            BIGINT,
+    audit_timestamp         timestamptz default current_timestamp,
     CONSTRAINT fk_account_id FOREIGN KEY (account_id) REFERENCES account (id)
 );
 

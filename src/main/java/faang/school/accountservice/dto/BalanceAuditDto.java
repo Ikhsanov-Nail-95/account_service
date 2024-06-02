@@ -1,10 +1,11 @@
 package faang.school.accountservice.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Builder
 @NoArgsConstructor
@@ -12,10 +13,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class BalanceAuditDto {
     private long id;
-    @NotNull
-    private Long accountId;
     private long authorizedBalance;
     private long actualBalance;
-    private long balanceVersion;
+    private long balanceAuditVersion;
+    private long operationId;
+    private LocalDateTime auditTimeStamp;
 
 }
